@@ -86,3 +86,11 @@ fn augmented_assignment() {
     a -= 10;
     println!("{}", a);
 }
+
+#[test]
+fn char_type() {
+    let a: char = 'a';
+    let b: char = 'b';
+
+    println!("{} {}", a,b)
+}
