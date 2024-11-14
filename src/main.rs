@@ -74,3 +74,15 @@ fn number_conversion() {
     let e: i8 = d as i8;
     println!("{}", e);
 }
+
+#[test]
+fn augmented_assignment() {
+    let mut a: i8 = 10;
+    println!("{}", a);
+
+    a += 10;
+    println!("{}", a);
+
+    a -= 10;
+    println!("{}", a);
+}
