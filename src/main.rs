@@ -150,3 +150,49 @@ fn test_unit() {
     let result = unit();
     println!("{:?}", result);
 }
+
+#[test]
+fn array() {
+    let array: [i8; 5] = [1, 2, 3, 4, 5];
+
+    println!("{:?}", array);
+}
+
+#[test]
+fn accessing_array() {
+    let array: [i8; 5] = [1, 2, 3, 4, 5];
+
+    let number1 = array[0];
+    let number2 = array[1];
+
+    println!("{} {}", number1, number2);
+}
+
+#[test]
+fn mutable_array() {
+    let mut array: [i8; 5] = [1, 2, 3, 4, 5];
+
+    array[0] = 2;
+    array[1] = 3;
+
+    println!("{:?}", array);
+}
+
+#[test]
+fn count_array_length() {
+    let mut array: [i8; 5] = [1, 2, 3, 4, 5];
+
+
+    println!("total data array {}", array.len());
+}
+
+#[test]
+fn two_dimensional_array() {
+    let matrix: [[i32; 2]; 2] = [
+        [1, 2],
+        [3, 4],
+    ];
+
+
+    println!("{:?}", matrix);
+}
