@@ -196,3 +196,12 @@ fn two_dimensional_array() {
 
     println!("{:?}", matrix);
 }
+
+const MAXIMUM_RATE: i8 = 100;
+
+#[test]
+fn constant() {
+    const MINIMUM_RATE: i8 = 0;
+
+    println!("{} {}", MINIMUM_RATE, MAXIMUM_RATE)
+}
