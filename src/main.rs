@@ -94,3 +94,59 @@ fn char_type() {
 
     println!("{} {}", a,b)
 }
+
+#[test]
+fn tuple() {
+    let data: (i32, f64, bool) = (10, 10.5, true);
+
+    println!("{:?}", data)
+}
+
+#[test]
+fn accessing_tuple() {
+    let data: (i32, f64, bool) = (10, 10.5, true);
+
+    println!("{:?}", data);
+
+    let a = data.0;
+    let b = data.1;
+    let c = data.2;
+
+    println!("{} {} {}", a,b,c);
+}
+
+#[test]
+fn destructuring_tuple() {
+    let data: (i32, f64, bool) = (10, 10.5, true);
+
+    println!("{:?}", data);
+
+    let (a, b, c) = data;
+
+    println!("{} {}, {}", a, b, c);
+}
+
+#[test]
+fn mutable_table() {
+    let mut data: (i32, f64, bool) = (10, 10.5, true);
+
+    println!("{:?}", data);
+
+    data.0 = 15;
+    data.1 = 20.5;
+    data.2 = false;
+
+    let (a, b, c) = data;
+
+    println!("{} {}, {}", a, b, c);
+}
+
+fn unit() {
+    println!("hello");
+}
+
+#[test]
+fn test_unit() {
+    let result = unit();
+    println!("{:?}", result);
+}
