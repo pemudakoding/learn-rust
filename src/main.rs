@@ -205,3 +205,43 @@ fn constant() {
 
     println!("{} {}", MINIMUM_RATE, MAXIMUM_RATE)
 }
+
+#[test]
+fn stack_heap() {
+    function_a();
+    function_b();
+}
+
+fn function_a() {
+    let a = 10;
+    let b = String::from("Kurniawan");
+
+    println!("{} {}", a, b);
+}
+
+fn function_b() {
+    let a = 10;
+    let b = String::from("Eko");
+
+    println!("{} {}", a, b);
+}
+
+#[test]
+fn string() {
+    let name: &str = "  Stiven Trizky Katuuk  ";
+    let trim: &str = name.trim();
+
+    println!("{}", trim);
+    println!("{}", name);
+}
+
+#[test]
+fn string_type() {
+    let mut name: String = String::from("Stiven Trizky");
+    name.push_str(" Katuuk");
+
+    println!("{}", name);
+
+    let budi: String = name.replace("Stiven", "Budi");
+    println!("{}", budi)
+}
