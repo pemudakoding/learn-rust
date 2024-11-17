@@ -180,7 +180,7 @@ fn mutable_array() {
 
 #[test]
 fn count_array_length() {
-    let mut array: [i8; 5] = [1, 2, 3, 4, 5];
+    let array: [i8; 5] = [1, 2, 3, 4, 5];
 
 
     println!("total data array {}", array.len());
@@ -244,4 +244,41 @@ fn string_type() {
 
     let budi: String = name.replace("Stiven", "Budi");
     println!("{}", budi)
+}
+
+#[test]
+fn ownership_rules() {
+    let a = 10;
+
+    {
+        let b = 10;
+        println!("{}", b);
+    }
+
+    println!("{}", a);
+}
+
+#[test]
+fn data_copy() {
+    let a = 10;
+    let b = a;
+
+    println!("{} {}", a, b);
+}
+
+#[test]
+fn ownership_movement() {
+    let name1 = String::from("Stiven");
+
+    let name2 = name1;
+
+    println!("{}", name2)
+}
+
+#[test]
+fn clone() {
+    let name1 = String::from("Stiven");
+    let name2 = name1.clone();
+
+    println!("{} {}", name1, name2);
 }
