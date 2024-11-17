@@ -282,3 +282,19 @@ fn clone() {
 
     println!("{} {}", name1, name2);
 }
+
+#[test]
+fn if_expression() {
+    let value = 10;
+    let result: &str = if value >= 8 {
+        "Good"
+    } else if value >= 6 {
+        "Not Bad"
+    } else {
+        "Bad"
+    };
+
+
+
+    println!("{}", result);
+}
