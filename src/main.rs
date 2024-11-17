@@ -1,3 +1,5 @@
+use std::collections::btree_map::Range;
+
 fn main() {
     println!("Hello, world!");
 }
@@ -366,5 +368,50 @@ fn while_loop() {
         }
 
         counter += 1;
+    }
+}
+
+#[test]
+fn array_iteration() {
+    let array: [&str; 5] = ["A", "B", "C", "D", "E"];
+    let mut index = 0;
+
+    while index < array.len() {
+        println!("Value: {}", array[index]);
+
+        index += 1;
+    }
+}
+
+#[test]
+fn for_loop() {
+    let array: [&str; 5] = ["A", "B", "C", "D", "E"];
+
+    for char in array {
+        println!("Value: {}", char);
+    }
+}
+
+#[test]
+fn range() {
+    let range = 0..5;
+
+    println!("Start: {}", range.start);
+    println!("End: {}", range.end);
+
+    for i in range {
+        println!("Range: {}", i)
+    }
+}
+
+#[test]
+fn range_inclusive() {
+    let range = 0..=5;
+
+    println!("Start: {}", range.start());
+    println!("End: {}", range.end());
+
+    for i in range {
+        println!("Range: {}", i)
     }
 }
