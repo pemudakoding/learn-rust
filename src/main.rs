@@ -1,4 +1,4 @@
-use std::collections::btree_map::Range;
+use std::{collections::btree_map::Range, fmt::format};
 
 fn main() {
     println!("Hello, world!");
@@ -414,4 +414,79 @@ fn range_inclusive() {
     for i in range {
         println!("Range: {}", i)
     }
+}
+
+fn say_hello() {
+    println!("Hello");
+}
+
+#[test]
+fn test_say_hello() {
+    say_hello();
+    say_hello();
+    say_hello();
+    say_hello();
+}
+
+fn say_goodbye(first_name: &str, last_name: &str) {
+    println!("Good Bye {} {}", first_name, last_name);
+}
+
+#[test]
+fn test_say_goodbye() {
+    say_goodbye("stiven", "katuuk");
+    say_goodbye("Risna", "Aulia");
+}
+
+fn factorial_loop(n: i32) -> i32 {
+    if n < 1 {
+        return 0;
+    }
+
+    let mut result = 1;
+
+    for i in 1..=n {
+        result *= i;
+    }
+
+    return result;
+}
+
+#[test]
+fn test_factorial_loop() {
+    let result = factorial_loop(5);
+
+    println!("Result: {}", result);
+
+    let result = factorial_loop(-10);
+
+    println!("Result: {}", result);
+}
+
+fn full_name(first_name: &String, last_name: &String) -> String {
+    return format!("{} {}", first_name, last_name);
+}
+
+#[test]
+fn test_full_name() {
+    let first_name = String::from("Eko");
+    let last_name = String::from("Khannedy");
+
+    let name = full_name(&first_name, &last_name);
+    println!("{}", name);
+    println!("{}", first_name);
+    println!("{}", last_name);
+}
+
+fn change_value(value: &mut String) {
+    value.push_str(" Test");
+}
+
+#[test]
+fn test_change_value() {
+    let mut value = String::from("Eko");
+
+    change_value(&mut value);
+
+    println!("{}", value);
 }
