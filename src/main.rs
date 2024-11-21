@@ -505,3 +505,14 @@ fn slice_reference() {
     let slice3: &[i32] = &array[5..];
     println!("{:?}", slice3);
 }
+
+#[test]
+fn string_slice() {
+    let name = String::from("Stiven Trizky Katuuk");
+
+    let first_name: &str = &name[0..6];
+    println!("{}", first_name);
+
+    let last_name: &str = &name[14..];
+    println!("{}", last_name);
+}
