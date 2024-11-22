@@ -603,3 +603,40 @@ fn test_method() {
 
     person.say_hello("Budi");
 }
+
+enum Level {
+    Regular,
+    Premium,
+    Platinum,
+}
+
+#[test]
+fn test_enum() {
+    let _level: Level = Level::Premium;
+    let _level1: Level = Level::Regular;
+    let _level1: Level = Level::Platinum;
+}
+
+enum Payment {
+    CreditCard(String),
+    BankTransfer(String, String),
+    EWallet(String, String),
+}
+
+impl Payment {
+    fn pay(&self, amount: u32) {
+        println!("Paying amount {}", amount)
+    }
+}
+
+#[test]
+fn test_payment() {
+    let _payment1 : Payment = Payment::CreditCard(String::from("BCA"));
+    _payment1.pay(50000);
+
+    let _payment2 : Payment = Payment::BankTransfer(String::from("BCA"), String::from("123456"));
+    _payment2.pay(25434);
+
+    let _payment3 : Payment = Payment::EWallet(String::from("DANA"), String::from("1234567"));
+    _payment3.pay(52134);
+}
