@@ -1,4 +1,4 @@
-use std::{collections::btree_map::Range, fmt::format};
+use std::{collections::btree_map::Range, fmt::format, ops::Not};
 
 fn main() {
     println!("Hello, world!");
@@ -516,3 +516,57 @@ fn string_slice() {
     let last_name: &str = &name[14..];
     println!("{}", last_name);
 }
+
+struct Person {
+    first_name: String,
+    middle_name: String,
+    last_name: String,
+    age: u8,
+}
+
+fn print_person(person: &Person) {
+    println!("{}", person.first_name);
+    println!("{}", person.middle_name);
+    println!("{}", person.last_name);
+    println!("{}", person.age);
+}
+
+#[test]
+fn struct_person() {
+    let first_name: String = String::from("Stiven");
+    let last_name: String = String::from("Katuuk");
+
+    let person: Person = Person {
+        first_name,
+        middle_name: String::from("Trizky"),
+        last_name,
+        age: 21
+    };
+
+    print_person(&person);
+
+    let person2: Person = Person {..person};
+
+    print_person(&person2);
+}
+
+struct GeoPoint(f64, f64);
+
+#[test]
+fn tuple_struct() {
+    let geo_point = GeoPoint(-6.243245, 106.816666);
+
+    println!("{}", geo_point.0);
+    println!("{}", geo_point.1);
+}
+
+struct Nothing;
+
+#[test]
+fn test_nothing() {
+    let _nothing1: Nothing = Nothing;
+    let _nothing2: Nothing = Nothing{};
+
+    
+}
+
