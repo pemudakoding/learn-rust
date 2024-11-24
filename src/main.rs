@@ -727,3 +727,23 @@ fn test_match_expression() {
 
     println!("result {}", result);
 }
+
+type Age = u8;
+type IdentityNumber = String;
+
+struct Customer {
+    id: IdentityNumber,
+    name: String,
+    age: Age
+}
+
+#[test]
+fn test_customer() {
+    let customer: Customer = Customer {
+        id: String::from("12312312"),
+        name: String::from("Eko"),
+        age: 20
+    };
+
+    println!("{} {} {}", customer.id , customer.name, customer.age);
+}
