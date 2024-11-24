@@ -612,9 +612,19 @@ enum Level {
 
 #[test]
 fn test_enum() {
-    let _level: Level = Level::Premium;
-    let _level1: Level = Level::Regular;
-    let _level1: Level = Level::Platinum;
+    let level: Level = Level::Premium;
+
+    match level {
+        Level::Regular => {
+            println!("Regular");
+        }
+        Level::Premium => {
+            println!("Premium");
+        }
+        Level::Platinum => {
+            println!("Platinum");
+        }
+    }
 }
 
 enum Payment {
@@ -625,7 +635,17 @@ enum Payment {
 
 impl Payment {
     fn pay(&self, amount: u32) {
-        println!("Paying amount {}", amount)
+        match self {
+            Payment::CreditCard(number)  => {
+                println!("Paying with credit card {} amount {}", number, amount);
+            }
+            Payment::BankTransfer(bank, number ) => {
+                println!("Paying with bank transfer {} {} amount {}", bank, number, amount);
+            }
+            Payment::EWallet(wallet, number) => {
+                println!("Paying with ewallet {} {} amount {}", wallet, number, amount);
+            }
+        }
     }
 }
 
@@ -639,4 +659,71 @@ fn test_payment() {
 
     let _payment3 : Payment = Payment::EWallet(String::from("DANA"), String::from("1234567"));
     _payment3.pay(52134);
+}
+
+#[test]
+fn test_match_value() {
+    let name: &str = "Budi";
+
+    match name {
+        "Eko" | "Budi" => {
+            println!("Hello Bos")
+        }
+        other => {
+            println!("Hello {}", other)
+        }
+    }
+}
+
+#[test]
+fn test_range_pattern() {
+    let value = 67;
+
+    match value {
+        75..=100 => {
+            println!("Great");
+        }
+        50..=74 => {
+            println!("Good");
+        }
+        25..=49 => {
+            println!("Not Bad");
+        }
+        0..=24 => {
+            println!("Bad");
+        }
+        other => {
+            println!("Invalid value {}", other)
+        }
+    }
+}
+
+#[test]
+fn test_struct_patterns() {
+    let geo_point = GeoPoint::new(-0.0, 1.0);
+
+    match geo_point {
+        GeoPoint(long, 0.0) => {
+            println!("Long: {}", long)
+        }
+        GeoPoint(0.0, lat) => {
+            println!("Lat: {}", lat)
+        }
+        GeoPoint(long, lat) => {
+            println!("Long: {}, lat: {}", long ,lat)
+        }
+    }
+}
+
+#[test]
+fn test_match_expression() {
+    let value = 2;
+    let result = match value {
+        0 => "nol",
+        1 => "satu",
+        2 => "Dua",
+        _ => "Invalid",
+    };
+
+    println!("result {}", result);
 }
