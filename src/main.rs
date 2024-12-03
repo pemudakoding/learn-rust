@@ -1,4 +1,29 @@
 use std::{collections::btree_map::Range, fmt::format, ops::Not};
+mod first;
+mod second;
+mod model;
+
+use first::say_hello;
+use second::say_hello as say_hello_second;
+
+#[test]
+fn test_use() {
+    say_hello();
+    say_hello_second();
+}
+
+#[test]
+fn test_module() {
+    let user: model::User = model::User {
+        first_name: String::from("Eko"),
+        last_name: String::from("Katuuk"),
+        username: String::from("pemudakoding"),
+        email: String::from("pemudakoding@gmail.com"),
+        age: 27,
+    };
+
+    user.say_hello("Budi");
+}
 
 fn main() {
     println!("Hello, world!");
@@ -416,9 +441,9 @@ fn range_inclusive() {
     }
 }
 
-fn say_hello() {
-    println!("Hello");
-}
+// fn say_hello() {
+//     println!("Hello");
+// }
 
 #[test]
 fn test_say_hello() {
