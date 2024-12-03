@@ -2,6 +2,7 @@ use std::{collections::btree_map::Range, fmt::format, ops::Not};
 mod first;
 mod second;
 mod model;
+mod third;
 
 use first::say_hello;
 use second::say_hello as say_hello_second;
