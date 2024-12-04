@@ -6,6 +6,7 @@ mod third;
 
 use first::say_hello;
 use second::say_hello as say_hello_second;
+use std::ops::{Add};
 
 #[test]
 fn test_use() {
@@ -969,4 +970,29 @@ impl<T> GetValue<T> for Point<T> where T: PartialOrd {
     fn get_value(&self) -> &T {
         &self.x
     }
+}
+
+struct Apple {
+    quantity: i32,
+}
+
+impl Add for Apple {
+    type Output = Apple;
+
+    fn add(self, rhs: Self) -> Self::Output {
+        return Apple {
+            quantity: self.quantity + rhs.quantity,
+        }
+    }
+}
+
+#[test]
+fn test_operator_add() {
+    let apple1 = Apple{quantity: 10};
+    let apple2 = Apple{quantity: 10};
+    let apple3 = Apple{quantity: 10};
+
+    let apple4 = apple1 + apple2 + apple3;
+
+    println!("{}", apple4.quantity)
 }
