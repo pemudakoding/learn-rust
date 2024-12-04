@@ -996,3 +996,19 @@ fn test_operator_add() {
 
     println!("{}", apple4.quantity)
 }
+
+fn double(x:  Option<i32>) -> Option<i32> {
+    return match x {
+        None => None,
+        Some(i) => Some(i * 2),
+    }
+}
+
+#[test]
+fn test_option() {
+    let result: Option<i32> = double(Some(10));
+    println!("{:?}", result);
+
+    let result: Option<i32> = double(None);
+    println!("{:?}", result);
+}
