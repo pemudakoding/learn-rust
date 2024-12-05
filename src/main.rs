@@ -1,5 +1,5 @@
 use std::{collections::btree_map::Range, fmt::format, ops::Not};
-use std::collections::{BTreeMap, HashMap, LinkedList, VecDeque};
+use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet, LinkedList, VecDeque};
 use std::fmt::{Debug, Formatter};
 
 mod first;
@@ -1171,4 +1171,35 @@ fn test_btree_map() {
     }
 }
 
+#[test]
+fn test_hash_set() {
+    let mut set: HashSet<String> = HashSet::<String>::new();
+
+    set.insert(String::from("Stiven"));
+    set.insert(String::from("Stiven"));
+    set.insert(String::from("Trizky"));
+    set.insert(String::from("Trizky"));
+    set.insert(String::from("Katuuk"));
+    set.insert(String::from("Katuuk"));
+
+    for value in set {
+        println!("{}", value);
+    }
+}
+
+#[test]
+fn test_btree_set() {
+    let mut set: BTreeSet<String> = BTreeSet::<String>::new();
+
+    set.insert(String::from("Stiven"));
+    set.insert(String::from("Stiven"));
+    set.insert(String::from("Trizky"));
+    set.insert(String::from("Trizky"));
+    set.insert(String::from("Katuuk"));
+    set.insert(String::from("Katuuk"));
+
+    for value in set {
+        println!("{}", value);
+    }
+}
 
