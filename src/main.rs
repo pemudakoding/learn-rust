@@ -1245,3 +1245,66 @@ fn test_iterator_method() {
     let odd: Vec<&i32> = vector.iter().filter(|x| *x % 2 != 0).collect();
     println!("{:?}", odd);
 }
+
+fn connect_database(host: Option<String>) {
+    match host {
+        Some(host) => {
+            println!("Connecting to database {}", host);
+        }
+        None => {
+            panic!("No database host provided");
+        }
+    }
+}
+
+#[test]
+fn test_panic() {
+    connect_database(Some(String::from("localhost")));
+    // connect_database(None);
+}
+
+fn connect_cache(host: Option<String>) -> Result<String, String> {
+    match host {
+        Some(host) => Ok(host),
+        None => Err("No cache host provided".to_string()),
+    }
+}
+
+fn connect_email(host: Option<String>) -> Result<String, String> {
+    match host {
+        Some(host) => Ok(host),
+        None => Err("No email host provided".to_string()),
+    }
+}
+
+fn connect_application(host: Option<String>) -> Result<String, String> {
+    connect_cache(host.clone())?;
+    connect_email(host.clone())?;
+
+    Ok("Connected to application".to_string())
+}
+
+#[test]
+fn test_application_error() {
+    let result = connect_application(Some(String::from("localhost")));
+
+    match result {
+        Ok(host) => println!("Success connect with message : {}", host),
+        Err(error) => println!("Error: {}", error)
+    }
+}
+
+#[test]
+fn test_recoverable_error() {
+    let cache = connect_cache(Some(String::from("localhost")));
+    let cache = connect_cache(None);
+
+    match cache {
+        Ok(host) => {
+            println!("Connecting to cache {}", host);
+        }
+        Err(error) => {
+            println!("Error with message: {}", error);
+        }
+    }
+}
