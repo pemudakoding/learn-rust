@@ -1,4 +1,5 @@
 use std::{collections::btree_map::Range, fmt::format, ops::Not};
+use std::collections::{LinkedList, VecDeque};
 use std::fmt::{Debug, Formatter};
 
 mod first;
@@ -1101,4 +1102,44 @@ fn test_function_as_closure() {
         to_uppercase
     );
 }
+
+#[test]
+fn test_vector() {
+    let mut names: Vec<String> = Vec::<String>::new();
+
+    names.push(String::from("John"));
+    names.push(String::from("Stiven"));
+    names.push(String::from("Katuuk"));
+
+    for name in names {
+        println!("{}", name);
+    }
+}
+
+#[test]
+fn test_vec_deque() {
+    let mut names: VecDeque<String> = VecDeque::<String>::new();
+
+    names.push_back(String::from("John"));
+    names.push_back(String::from("Stiven"));
+    names.push_front(String::from("Katuuk"));
+
+    for name in names {
+        println!("{}", name);
+    }
+}
+
+#[test]
+fn test_vec_linked_list() {
+    let mut names: LinkedList<String> = LinkedList::<String>::new();
+
+    names.push_back(String::from("John"));
+    names.push_back(String::from("Stiven"));
+    names.push_front(String::from("Katuuk"));
+
+    for name in names {
+        println!("{}", name);
+    }
+}
+
 
