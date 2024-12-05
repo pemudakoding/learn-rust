@@ -1,5 +1,5 @@
 use std::{collections::btree_map::Range, fmt::format, ops::Not};
-use std::collections::{LinkedList, VecDeque};
+use std::collections::{BTreeMap, HashMap, LinkedList, VecDeque};
 use std::fmt::{Debug, Formatter};
 
 mod first;
@@ -1139,6 +1139,35 @@ fn test_vec_linked_list() {
 
     for name in names {
         println!("{}", name);
+    }
+}
+
+#[test]
+fn test_hash_map() {
+    let mut map: HashMap<String, String> = HashMap::<String, String>::new();
+
+    map.insert(String::from("name"), String::from("Stiven"));
+    map.insert(String::from("age"), String::from("26"));
+    map.insert(String::from("country"), String::from("Indonesia"));
+
+    let name = map.get("name");
+    let age = map.get("age");
+
+    for entry in map {
+        println!("{} : {}", entry.0, entry.1);
+    }
+}
+
+#[test]
+fn test_btree_map() {
+    let mut map: BTreeMap<String, String> = BTreeMap::<String, String>::new();
+
+    map.insert(String::from("name"), String::from("Stiven"));
+    map.insert(String::from("age"), String::from("26"));
+    map.insert(String::from("country"), String::from("Indonesia"));
+
+    for entry in map {
+        println!("{} : {}", entry.0, entry.1);
     }
 }
 
