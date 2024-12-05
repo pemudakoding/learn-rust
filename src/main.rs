@@ -1,4 +1,6 @@
 use std::{collections::btree_map::Range, fmt::format, ops::Not};
+use std::fmt::{Debug, Formatter};
+
 mod first;
 mod second;
 mod model;
@@ -1034,3 +1036,69 @@ fn test_compare() {
     println!("Apple1 < Apple2 : {}", apple1 < apple2);
     println!("Apple1 > Apple2 : {}", apple1 > apple2);
 }
+
+struct Category {
+    id: String,
+    name: String,
+}
+
+impl Debug for Category {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Category")
+            .field("id", &self.id)
+            .field("name", &self.name)
+            .finish()
+    }
+}
+
+#[test]
+fn test_format() {
+    let category = Category {
+        id: String::from("123"),
+        name: String::from("John"),
+    };
+
+    println!("{:?}", category);
+}
+
+#[test]
+fn test_closure() {
+    let sum: fn(i32, i32) -> i32 = |a: i32, b: i32| a + b;
+    let divide = |dividend: i32, divisor: i32| dividend / divisor;
+    let multiple = |multiple: i32, times: i32| -> i32 {
+        return multiple * times;
+    };
+
+    println!("{}", sum(3, 5));
+    println!("{}", multiple(3, 5));
+    println!("{}", divide(6, 2));
+}
+
+fn print_with_filter(value: String, filter: fn(String) -> String) {
+    let result = filter(value);
+
+    println!("{}", result);
+}
+
+#[test]
+fn test_closure_as_parameter() {
+    print_with_filter(
+        String::from("Stiven"),
+        |value: String| -> String {
+            return value.to_uppercase();
+        }
+    );
+}
+
+fn to_uppercase(value: String) -> String {
+    value.to_uppercase()
+}
+
+#[test]
+fn test_function_as_closure() {
+    print_with_filter(
+        String::from("Stiven"),
+        to_uppercase
+    );
+}
+
