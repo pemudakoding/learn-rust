@@ -10,6 +10,7 @@ mod third;
 use first::say_hello;
 use second::say_hello as say_hello_second;
 use std::ops::{Add};
+use crate::ProductCategory::End;
 
 #[test]
 fn test_use() {
@@ -1423,4 +1424,43 @@ fn test_attribute_derive() {
 
     let result = company > company2;
     println!("{}", result);
+}
+
+#[test]
+fn test_Box() {
+    let value: Box<i32> = Box::new(10);
+    
+    println!("{}", value);
+    
+    display_number(*value);
+    display_number_reference(&value);
+}
+
+fn display_number(value: i32) {
+    println!("{}", value);
+}
+
+fn display_number_reference(value: &i32) {
+    println!("{}", value);
+}
+
+#[derive(Debug)]
+enum ProductCategory {
+    Of(String, Box<ProductCategory>),
+    End,
+}
+
+#[test]
+fn test_box_enum() {
+    let category = ProductCategory::Of(
+        "Laptop".to_string(),
+        Box::new(
+            ProductCategory::Of(
+                "Dell".to_string(),
+                Box::new(End),
+            )
+        )
+    );
+    
+    println!("{:?}", category);
 }
