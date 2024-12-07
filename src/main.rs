@@ -1394,3 +1394,33 @@ fn test_student() {
     
     println!("{}", result);
 }
+
+#[derive(Debug, PartialEq, PartialOrd)]
+struct Company {
+    name: String,
+    location: String,
+    website: String,
+}
+
+#[test]
+fn test_attribute_derive() {
+    let company = Company {
+        name: "Programmer zaman now".to_string(),
+        location: "Indonesia".to_string(),
+        website: "https://www.zaman.net/".to_string(),
+    };
+
+    let company2 = Company {
+        name: "Programmer zaman now".to_string(),
+        location: "Indonesia".to_string(),
+        website: "https://www.zaman.net/".to_string(),
+    };
+    
+    println!("{:?}", company);
+    
+    let result = company == company2;
+    println!("{}", result);
+
+    let result = company > company2;
+    println!("{}", result);
+}
