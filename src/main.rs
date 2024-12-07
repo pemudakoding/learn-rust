@@ -1473,3 +1473,22 @@ fn test_dereference() {
     let result: i32 = *value1 * *value2;
     println!("{}", result);
 }
+
+struct Book {
+    title: String,
+}
+
+impl Drop for Book {
+    fn drop(&mut self) {
+        println!("Dropping book {}", self.title);
+    }
+}
+
+#[test]
+fn test_drop_book() {
+    let book = Book {
+        title: "Rust programmer".to_string(),
+    };
+    
+    println!("{}", book.title);
+}
