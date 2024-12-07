@@ -1464,3 +1464,12 @@ fn test_box_enum() {
     
     println!("{:?}", category);
 }
+
+#[test]
+fn test_dereference() {
+    let value1 = Box::new(10);
+    let value2 = Box::new(10);
+    
+    let result: i32 = *value1 * *value2;
+    println!("{}", result);
+}
