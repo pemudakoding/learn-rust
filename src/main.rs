@@ -1542,3 +1542,21 @@ fn test_unsafe() {
         println!("{}", COUNTER);
     }
 }
+
+macro_rules! hi {
+    () => {
+        println!("hi!");
+    };
+    ($name: expr) => {
+        println!("Hi {}!", $name)
+    }
+}
+
+#[test]
+fn test_macro() {
+    hi!();
+    hi!("Eko");
+    hi! {
+        "Eko"
+    }
+}
