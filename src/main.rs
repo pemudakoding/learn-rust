@@ -10,6 +10,7 @@ mod third;
 use first::say_hello;
 use second::say_hello as say_hello_second;
 use std::ops::{Add};
+use std::rc::Rc;
 use crate::ProductCategory::End;
 
 #[test]
@@ -1491,4 +1492,31 @@ fn test_drop_book() {
     };
     
     println!("{}", book.title);
+}
+
+enum Brand {
+    Of(String, Rc<Brand>),
+    End,
+}
+
+#[test]
+fn test_multiple_ownership() {
+    let apple: Rc<Brand> = Rc::new(Brand::Of("Apple".to_string(), Rc::new(Brand::End))); 
+    println!("Apple reference count : {}", Rc::strong_count(&apple));
+    
+    let laptop: Brand = Brand::Of("Laptop".to_string(), Rc::clone(&apple));
+    println!("Apple reference count : {}", Rc::strong_count(&apple));
+
+    {
+        let smartphone: Brand = Brand::Of("Smartphone".to_string(), Rc::clone(&apple));
+        println!("Apple reference count : {}", Rc::strong_count(&apple));
+    }
+
+    println!("Apple reference count : {}", Rc::strong_count(&apple));
+    
+    // let apple = ProductCategory::Of("Apple".to_string(), Box::new(End));
+    // let laptop = ProductCategory::Of("Laptop".to_string(), Box::new(apple));
+    // let smartphone = ProductCategory::Of("Apple".to_string(), Box::new(apple));
+    
+    
 }
